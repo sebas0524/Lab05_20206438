@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <title>Nuevo Empleado</title>
+</head>
+<body>
+<div class="container">
+    <div th:replace="index :: menu"></div>
+    <main>
+        <div class="container px-4 py-5">
+            <h1 class="pb-2 mb-3 border-bottom">Nueva Mascota</h1>
+            <a class="btn btn-primary mt-4 mb-4" th:href="@{/mascota/nuevaMascota}">Nuevo Mascota</a>
+            <form method="post" th:action="@{/mascota/guardar}" class="mt-2">
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre Mascota</label>
+                    <input type="text" class="form-control" name="nombre" id="nombre">
+                </div>
+                <div class="mb-3">
+                    <label for="genero" class="form-label">Genero</label>
+                    <input type="text" class="form-control" name="genero" id="genero">
+                </div>
+                <div class="mb-3">
+                    <label for="edad" class="form-label">Edad</label>
+                    <input type="text" class="form-control" name="edad" id="edad">
+                </div>
+                <div class="mb-3">
+                    <label for="fecha" class="form-label">Fecha de Nacimiento</label>
+                    <input type="text" class="form-control" name="fecha" id="fecha">
+                </div>
+
+                <div class="mb-3">
+                    <label for="vacunado" class="form-label">Vacunado?</label>
+                    <input type="text" class="form-control" name="vacunado" id="vacunado">
+                </div>
+                <div class="mb-3">
+                    <label for="desparasitado" class="form-label">Desparasitado?</label>
+                    <input type="text" class="form-control" name="desparasitado" id="desparasitado">
+                </div>
+
+                <a th:href="@{/mascota/lista}" class="btn btn-danger">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Registrar</button>
+            </form>
+        </div>
+    </main>
+</div>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

@@ -1,8 +1,9 @@
 package com.example.lab05_20206438.Controllers;
 
-
+import com.example.lab05_20206438.Entity.Mascotas;
 import com.example.lab05_20206438.Entity.Viaje;
 import com.example.lab05_20206438.Repository.LugaresRepository;
+import com.example.lab05_20206438.Repository.MascotaRepository;
 import com.example.lab05_20206438.Repository.PersonaRepository;
 import com.example.lab05_20206438.Repository.ViajeRepository;
 import org.springframework.stereotype.Controller;
@@ -15,42 +16,45 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/viajes")
-public class ViajesController {
+@RequestMapping("/mascota")
+public class MascotaController {
 
     final
     ViajeRepository viajeRepository;
     final PersonaRepository personaRepository;
     final LugaresRepository lugaresRepository;
+    final MascotaRepository mascotaRepository;
 
-    public ViajesController(ViajeRepository viajeRepository,
+    public MascotaController(ViajeRepository viajeRepository,
                             PersonaRepository personaRepository,
-                            LugaresRepository lugaresRepository) {
+                            LugaresRepository lugaresRepository,
+                             MascotaRepository mascotaRepository) {
         this.viajeRepository = viajeRepository;
         this.personaRepository=personaRepository;
         this.lugaresRepository=lugaresRepository;
+        this.mascotaRepository=mascotaRepository;
     }
 
 
     @GetMapping(value={"/lista",""})
-    public String listaViajes(Model model){
-        model.addAttribute("listaViajes",viajeRepository.findAll());
-        return "viajes/lista";
+    public String listaMascota(Model model){
+        model.addAttribute("listaMascota",mascotaRepository.findAll());
+        return "mascota/lista";
     }
-    @GetMapping("/nuevoViaje")
-    public String nuevoViaje(Model model){
+    @GetMapping("/nuevaMascota")
+    public String nuevaMascota(Model model){
         model.addAttribute("listaPersonas",personaRepository.findAll());
         model.addAttribute("listaLugares",lugaresRepository.findAll());
-        return"viajes/nuevoViaje";
+        return "mascota/nuevaMascota";
     }
     @PostMapping("/guardar")
-    public String guardarNuevoViaje(Viaje viajes){
-        viajeRepository.save(viajes);
-        return "redirect:/viajes/lista";
+    public String guardarNuevaMascota(Mascotas mascota){
+        mascotaRepository.save(mascota);
+        return "redirect:/mascota/lista";
     }
     @GetMapping("/editar")
     public String editarViaje(Model model,
-                                      @RequestParam("id") int id) {
+                              @RequestParam("id") int id) {
 
         Optional<Viaje> optShipper = viajeRepository.findById(id);
 
@@ -66,7 +70,7 @@ public class ViajesController {
     }
     @GetMapping("/borrar")
     public String borrarViaje(Model model,
-                                      @RequestParam("id") int id) {
+                              @RequestParam("id") int id) {
 
         Optional<Viaje> optShipper = viajeRepository.findById(id);
 
@@ -76,7 +80,4 @@ public class ViajesController {
         return "redirect:/viajes/lista";
 
     }
-
-
-
 }

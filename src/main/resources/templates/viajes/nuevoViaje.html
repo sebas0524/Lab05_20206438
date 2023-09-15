@@ -28,15 +28,15 @@
             </div>
 
             <div class="mb-3">
-                <label for="jobs" class="form-label">Puesto</label>
-                <select class="form-select" name="jobs" id="jobs">
+                <label for="persona" class="form-label">Selector de Personas</label>
+                <select class="form-select" name="persona" id="persona">
                     <option th:each="persona: ${listaPersonas}"
                             th:text="${persona.nombre}" th:value="${persona.idPersona}">Open this select menu</option>
                 </select>
             </div>
             <div class="mb-3">
-                <label for="employee" class="form-label">Jefe</label>
-                <select class="form-select" name="employee" id="employee">
+                <label for="lugares" class="form-label">Selector de Lugar</label>
+                <select class="form-select" name="lugares" id="lugares">
                     <option th:each="lugares: ${listaLugares}"
                             th:text="${lugares.nombreLugar}" th:value="${lugares.idLugares}">Open this select menu</option>
                 </select>
