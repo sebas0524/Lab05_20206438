@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <title>Nuevo Empleado</title>
+</head>
+<body>
+<div class="container">
+    <div th:replace="index :: menu"></div>
+<main>
+    <div class="container px-4 py-5">
+        <h1 class="pb-2 mb-3 border-bottom">Nuevo Viaje</h1>
+        <a class="btn btn-primary mt-4 mb-4" th:href="@{/mascota/nuevaMascota}">Nuevo Mascota</a>
+        <form method="post" th:action="@{/viajes/guardar}" class="mt-2">
+            <div class="mb-3">
+                <label for="puntoRecojo" class="form-label">Punto de Recojo</label>
+                <input type="text" class="form-control" name="puntoRecojo" id="puntoRecojo">
+            </div>
+            <div class="mb-3">
+                <label for="cantPersonas" class="form-label">Cantidad de Personas</label>
+                <input type="text" class="form-control" name="cantPersonas" id="cantPersonas">
+            </div>
+            <div class="mb-3">
+                <label for="cantPerros" class="form-label">Cantidad de Perros</label>
+                <input type="text" class="form-control" name="cantPerros" id="cantPerros">
+            </div>
+
+            <div class="mb-3">
+                <label for="jobs" class="form-label">Puesto</label>
+                <select class="form-select" name="jobs" id="jobs">
+                    <option th:each="persona: ${listaPersonas}"
+                            th:text="${persona.nombre}" th:value="${persona.idPersona}">Open this select menu</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="employee" class="form-label">Jefe</label>
+                <select class="form-select" name="employee" id="employee">
+                    <option th:each="lugares: ${listaLugares}"
+                            th:text="${lugares.nombreLugar}" th:value="${lugares.idLugares}">Open this select menu</option>
+                </select>
+            </div>
+
+            <a th:href="@{/viajes}" class="btn btn-danger">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+    </div>
+</main>
+</div>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
